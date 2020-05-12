@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: <%= ENV['sedulur_DATABASE_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: sedulur_development
+
+test:
+  <<: *default
+  database: sedulur_test
+
+production:
+  <<: *default
+  database: sedulur_production
+  username: username
+  password: <%= ENV['PROJECT_DATABASE_PASSWORD'] %>
